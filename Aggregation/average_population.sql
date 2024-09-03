@@ -19,6 +19,5 @@ you have to print the average population of all cities, rounded down to the near
 
 Solution-->>
 
-Select AVG(population)
-from City
-where district ='California'
+Select Floor(AVG(population))
+from city
