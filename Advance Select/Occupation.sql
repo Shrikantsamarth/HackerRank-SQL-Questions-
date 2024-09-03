@@ -14,39 +14,41 @@ NULL     Ketty      NULL   Maria*/
 
 --> Solution
 
-  
-with doctor as (
+With Doctor as (
 Select 
-    Name, 
-    Row_Number() Over(order by name) as rn
-From Occupations 
-Where Occupation like 'Doctor'
+    name,
+    Row_number() over(order by name) as rn
+    from Occupations
+    where occupation LIKE 'Doctor'
 )
-, professor as (Select 
-                Name, 
-                Row_Number() over(order by name) as rn
-               From Occupations 
-Where Occupation like 'Professor')
-, singer as (Select 
-             Name, 
-             Row_Number() over(order by name) as rn
-            From Occupations 
-Where Occupation like 'Singer')
+,professor as(
+Select 
+    name,
+    Row_number() over(order by name) as rn
+    from Occupations
+    where occupation LIKE 'Professor'
+)
+,singer as(
+Select 
+    name,
+    Row_number() over(order by name) as rn
+    from Occupations
+    where occupation LIKE 'singer'
+)
+,actor as(
+Select 
+    name,
+    Row_number() over(order by name) as rn 
+    from Occupations
+    where occupation LIKE 'actor'
+)
 
-, Actor as (Select 
-            Name, 
-            Row_Number() over(order by name) as rn
-           From Occupations
-Where Occupation like 'Actor')
-
-Select  d.name,
-            p.name,
-            s.name,
-            a.name
+Select 
+        d.name,
+        p.name,
+        s.name,
+        a.name
 from professor p
-        left Join doctor d on d.rn=p.rn
-        left Join singer s on s.rn=p.rn
-        left Join actor a on a.rn=p.rn
-
-
-
+left join doctor d on d.rn=p.rn
+left join singer s on s.rn=p.rn
+left join actor a on a.rn=p.rn
